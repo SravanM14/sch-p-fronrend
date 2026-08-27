@@ -145,8 +145,10 @@ const Login = () => {
       // --------------------------------------------
      setAuth(response.data.user, response.data.accessToken, response.data.refreshToken)
       setSuccess("Login successful.");
-       console.log("isUser :",user)
-      console.log("isAuthenticated :",isAuthenticated)
+      setLoginFormData({
+        email:"",
+        password:""
+      })
     } catch (err) {
       // --------------------------------------------
       // Handle API Error
