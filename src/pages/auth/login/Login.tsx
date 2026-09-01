@@ -5,7 +5,11 @@ import AuthLayout from "../../../layouts/AuthLayout/AuthLayout";
 import AuthBrandPanel from "../../../components/auth/AuthBrandPanel";
 import authService from "../../../services/auth/authService";
 import { getApiError } from "../../../utils/apiError";
-import useAuthStore from "../../../store/auth/authStore";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../../../store/hook";
+import {setCredintials} from "../../../store/auth/authSlice";
 
 // --------------------------------------------------
 // Types
@@ -21,6 +25,8 @@ export interface LoginForm {
 // --------------------------------------------------
 
 const Login = () => {
+  const dispatch = useAppDispatch();
+
   // ------------------------------------------------
   // Form State
   // ------------------------------------------------
@@ -106,12 +112,12 @@ const Login = () => {
   // Handle Login Submit
   // ------------------------------------------------
 
-   const setAuth = useAuthStore((state)=> state.setAuth)
+  //  const setAuth = useAuthStore((state)=> state.setAuth)
 
-  const user = useAuthStore((state)=> state.user)
-  const isAuthenticated = useAuthStore((state)=> state.isAuthenticated)
-      console.log("isUser :",user)
-      console.log("isAuthenticated :",isAuthenticated)
+  // const user = useAuthStore((state)=> state.user)
+  // const isAuthenticated = useAuthStore((state)=> state.isAuthenticated)
+  //     console.log("isUser :",user)
+  //     console.log("isAuthenticated :",isAuthenticated)
     
 
   const handleSubmit = async (
@@ -140,10 +146,22 @@ const Login = () => {
 
       const response = await authService.login(loginFormData);
        console.log(response,"res")
+       
+       const {
+  user,
+  accessToken,
+  refreshToken,
+} = response.data;
+
+  dispatch(setCredintials({
+    user,
+    accessToken,
+    refreshToken
+    }));
       // --------------------------------------------
       // Login Success
       // --------------------------------------------
-     setAuth(response.data.user, response.data.accessToken, response.data.refreshToken)
+    //  setAuth(response.data.user, response.data.accessToken, response.data.refreshToken)
       setSuccess("Login successful.");
       setLoginFormData({
         email:"",
@@ -178,6 +196,7 @@ const Login = () => {
         <AuthBrandPanel variant="login" />
       }
     >
+
       <div className="auth-form">
 
         {/* ========================================== */}
