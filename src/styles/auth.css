@@ -49,6 +49,16 @@
   background: #eef7ff;
 }
 
+.brand-forgot-password {
+  color: #0f172a;
+  background: #f3efff;
+}
+
+.brand-reset-password {
+  color: #0f172a;
+  background: #eef7ff;
+}
+
 .brand-header {
   display: flex;
   align-items: center;
@@ -254,3 +264,16 @@
 .school-image{
     width: 100%;
   }
+
+  .forgot-password-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: #eee8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6f35d5;
+  font-size: 32px;
+}

@@ -2,7 +2,7 @@ import loginImage from "../../assets/images/loginImage.png";
 
 
 interface AuthBrandPanelProps {
-    variant?: "login" | "register";
+    variant?: "login" | "register" |"forgot-password" | "reset-password";
 }
 
 const AuthBrandPanel = ({
@@ -12,7 +12,7 @@ const AuthBrandPanel = ({
 
     return (
         <div
-            className={`brand-content ${isLogin ? "brand-login" : "brand-register"
+            className={`brand-content brand-${variant}
                 }`}
         >
             {/* Logo */}

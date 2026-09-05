@@ -1,4 +1,4 @@
-import api from "../api/axios";
+import api, { publicApi } from "../api/axios";
 
 export interface RegisterRequest {
     name: string;
@@ -32,8 +32,18 @@ const login = async (req: LoginRequest) => {
 
 }
 
+const forgotPassword = async(email:string)=>{
+    const response = await publicApi.post('/auth/forgot-password', {email});
+    return response.data;
+}
+
+const refreshToken = async (refreshToken:string)=>{
+    const response = await api.post('/auth/refresh-token',{refreshToken});
+    return response;
+}
+
 const authService = {
-    register, login
+    register, login,refreshToken,forgotPassword
 }
 
 export default authService;
