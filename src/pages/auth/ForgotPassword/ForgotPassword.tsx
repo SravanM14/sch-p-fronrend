@@ -66,7 +66,8 @@ const ForgotPassword = () => {
           >
             {sucess}
           </div>
-
+        )}
+        
         {/* Form */}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
