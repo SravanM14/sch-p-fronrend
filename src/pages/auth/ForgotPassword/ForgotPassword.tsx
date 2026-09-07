@@ -58,6 +58,15 @@ const ForgotPassword = () => {
           and we will send you a reset link.
         </p>
 
+        
+        {sucess && (
+          <div
+            className="alert alert-success"
+            role="alert"
+          >
+            {sucess}
+          </div>
+
         {/* Form */}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
