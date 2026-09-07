@@ -6,8 +6,7 @@ import AuthBrandPanel from "../../../components/auth/AuthBrandPanel";
 import authService from "../../../services/auth/authService";
 import { getApiError } from "../../../utils/apiError";
 import {
-  useAppDispatch,
-  useAppSelector,
+  useAppDispatch
 } from "../../../store/hook";
 import {setCredintials} from "../../../store/auth/authSlice";
 

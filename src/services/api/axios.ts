@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { store } from '../../store';
-import { Tuple } from '@reduxjs/toolkit';
 import authService from '../auth/authService';
 import { setCredintials } from '../../store/auth/authSlice';
 
