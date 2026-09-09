@@ -7,7 +7,7 @@ import {
 } from "../../store/profile/profileSlice";
 import authService from "../../services/auth/authService";
 
-import "./Profile.css";
+import "./profile.css";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
@@ -106,7 +106,7 @@ const Profile = () => {
       <div className="profile-header d-flex justify-content-between align-items-center mb-4">
         <div>
           <h4 className="fw-bold mb-1">
-            My Profile
+            My Profile 
           </h4>
 
           <small className="text-muted">
