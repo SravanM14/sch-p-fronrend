@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-import AuthLayout from "../../../layouts/AuthLayout/AuthLayout";
-import AuthBrandPanel from "../../../components/auth/AuthBrandPanel";
 import authService from "../../../services/auth/authService";
 
 const ForgotPassword = () => {
@@ -34,11 +31,11 @@ const ForgotPassword = () => {
 
   return (
    
-    <AuthLayout
-      brandPanel={
-        <AuthBrandPanel variant="forgot-password" />
-      }
-    >
+    // <AuthLayout
+    //   brandPanel={
+    //     <AuthBrandPanel variant="forgot-password" />
+    //   }
+    <div className="auth-page">
       <div className="auth-form">
         {/* Icon */}
         <div className="text-center mb-4">
@@ -75,13 +72,16 @@ const ForgotPassword = () => {
               Email Address
             </label>
 
-            <div className="position-relative">
-              <i className="bi bi-envelope auth-input-icon"></i>
+            <div className="input-group">
+
+              <span className="input-group-text bg-white">
+                <i className="bi bi-envelope"></i>
+              </span>
 
               <input
-                type="email"
                 id="email"
                 name="email"
+                type="email"
                 className={`form-control auth-input ${
                   error ? "is-invalid" : ""
                 }`}
@@ -118,7 +118,7 @@ const ForgotPassword = () => {
           </Link>
         </div>
       </div>
-    </AuthLayout>
+    </div>
   );
 };
 

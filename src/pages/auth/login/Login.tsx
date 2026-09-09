@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-import AuthLayout from "../../../layouts/AuthLayout/AuthLayout";
-import AuthBrandPanel from "../../../components/auth/AuthBrandPanel";
 import authService from "../../../services/auth/authService";
 import { getApiError } from "../../../utils/apiError";
 import {
@@ -190,12 +187,12 @@ const Login = () => {
   // ------------------------------------------------
 
   return (
-    <AuthLayout
-      brandPanel={
-        <AuthBrandPanel variant="login" />
-      }
-    >
-
+    // <AuthLayout
+    //   // brandPanel={
+    //   //   <AuthBrandPanel variant="login" />
+    //   // }
+    // >
+    <div className="auth-page">
       <div className="auth-form">
 
         {/* ========================================== */}
@@ -203,7 +200,7 @@ const Login = () => {
         {/* ========================================== */}
 
         <h1 className="auth-title">
-          Welcome Back! 👋
+          Welcome Back! <span ><i className="bi bi-building"></i></span>
         </h1>
 
         <p className="auth-subtitle">
@@ -472,7 +469,8 @@ const Login = () => {
 
         </form>
       </div>
-    </AuthLayout>
+      </div>
+    // </AuthLayout>
   );
 };
 

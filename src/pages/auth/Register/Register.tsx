@@ -1,8 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-import AuthLayout from "../../../layouts/AuthLayout/AuthLayout";
-import AuthBrandPanel from "../../../components/auth/AuthBrandPanel";
 import authService from "../../../services/auth/authService";
 import { getApiError } from "../../../utils/apiError";
 
@@ -173,11 +170,12 @@ const Register = () => {
   // ------------------------------------
 
   return (
-    <AuthLayout
-      brandPanel={
-        <AuthBrandPanel variant="register" />
-      }
-    >
+    // <AuthLayout
+    //   brandPanel={
+    //     <AuthBrandPanel variant="register" />
+    //   }
+    // >
+    <div className="auth-page">
       <div className="auth-form">
 
         {/* -------------------------------- */}
@@ -599,7 +597,7 @@ const Register = () => {
         </form>
 
       </div>
-    </AuthLayout>
+    </div>
   );
 };
 
