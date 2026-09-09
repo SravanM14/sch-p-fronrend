@@ -4,7 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import {useAppSelector } from "../../store/hook";
 import authService from "../../services/auth/authService";
 
-const Topbar = () => {
+interface TopbarProps {
+    isSidebarVisible: boolean;
+    onToggleSidebar: () => void;
+}
+
+const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
     const navigate = useNavigate();
     const user = useAppSelector((state) => state.auth.user);
 
@@ -26,7 +31,13 @@ const Topbar = () => {
 
                 {/* Left */}
                 <div className="d-flex align-items-center gap-3">
-                    <button className="btn btn-light">
+                    <button
+                        className="btn btn-light"
+                        type="button"
+                        aria-label={isSidebarVisible ? "Hide sidebar" : "Show sidebar"}
+                        aria-pressed={isSidebarVisible}
+                        onClick={onToggleSidebar}
+                    >
                         <i className="bi bi-list fs-5"></i>
                     </button>
 
