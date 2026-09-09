@@ -1,12 +1,10 @@
 //import { useAppSelector } from "../../store/hooks";
 
 import { Link, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../store/hook";
-import { logOut } from "../../store/auth/authSlice";
+import {useAppSelector } from "../../store/hook";
 import authService from "../../services/auth/authService";
 
 const Topbar = () => {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const user = useAppSelector((state) => state.auth.user);
 

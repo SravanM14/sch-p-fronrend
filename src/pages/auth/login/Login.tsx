@@ -108,15 +108,6 @@ const Login = () => {
   // ------------------------------------------------
   // Handle Login Submit
   // ------------------------------------------------
-
-  //  const setAuth = useAuthStore((state)=> state.setAuth)
-
-  // const user = useAuthStore((state)=> state.user)
-  // const isAuthenticated = useAuthStore((state)=> state.isAuthenticated)
-  //     console.log("isUser :",user)
-  //     console.log("isAuthenticated :",isAuthenticated)
-    
-
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {

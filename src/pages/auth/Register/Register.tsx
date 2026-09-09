@@ -112,15 +112,7 @@ const Register = () => {
       // ------------------------------------
       // Register API
       // ------------------------------------
-
-      const response =
         await authService.register(formData);
-
-      console.log(
-        "REGISTER RESPONSE:",
-        response
-      );
-
       // ------------------------------------
       // Success
       // ------------------------------------

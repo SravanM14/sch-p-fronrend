@@ -30,13 +30,9 @@ const Profile = () => {
         dispatch(setLoading(true));
 
         const response = await authService.getProfile();
-
-        console.log("Profile response:", response);
-
         dispatch(setProfile(response.data));
       } catch (error) {
         console.error("Profile fetch error:", error);
-
         dispatch(
           setError("Failed to fetch profile data.")
         );
