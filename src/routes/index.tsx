@@ -3,6 +3,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "../pages/auth/login/Login";
 import Register from "../pages/auth/Register/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword/ForgotPassword";
+import AppLayout from "../layouts/AppLayout/AppLayout";
+import Profile from "../pages/profile/Profile";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +23,10 @@ const AppRoutes = () => {
       {/* Unknown routes */}
       <Route path="*" element={<Navigate to="/login" replace />} />
 
+ {/* Application */}
+      <Route element={<AppLayout />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
 
     </Routes>
   );

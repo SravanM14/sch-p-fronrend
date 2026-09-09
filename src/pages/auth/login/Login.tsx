@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authService from "../../../services/auth/authService";
 import { getApiError } from "../../../utils/apiError";
 import {
@@ -22,6 +22,7 @@ export interface LoginForm {
 
 const Login = () => {
   const dispatch = useAppDispatch();
+   const navigate = useNavigate();
 
   // ------------------------------------------------
   // Form State
@@ -163,6 +164,7 @@ const Login = () => {
         email:"",
         password:""
       })
+      navigate("/profile");
     } catch (err) {
       // --------------------------------------------
       // Handle API Error

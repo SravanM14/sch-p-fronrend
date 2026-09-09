@@ -4,6 +4,7 @@ import {
   persistStore,
   persistReducer,
 } from "redux-persist";
+import profileReducer from "./profile/profileSlice";
 
 
 
@@ -30,6 +31,7 @@ const persistedAuthReducer = persistReducer(
 export const store = configureStore({
     reducer :{
         auth:persistedAuthReducer,
+        profile:profileReducer
     },
      middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

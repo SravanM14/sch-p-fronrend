@@ -17,7 +17,7 @@ export interface LoginRequest {
 
 const register = async (req: RegisterRequest) => {
 
-    const response = await api.post('/auth/register', req);
+    const response = await publicApi.post('/auth/register', req);
 
     return response.data;
 
@@ -26,7 +26,7 @@ const register = async (req: RegisterRequest) => {
 
 const login = async (req: LoginRequest) => {
 
-    const response = await api.post('/auth/login', req);
+    const response = await publicApi.post('/auth/login', req);
 
     return response.data;
 
@@ -42,8 +42,19 @@ const refreshToken = async (refreshToken:string)=>{
     return response;
 }
 
+
+const getProfile = async()=>{
+    const response = await api.get('/auth/profile');
+    return response.data;
+}
+
+const logout = async(refreshToken:string)=>{
+    const response = await api.post('/auth/logout',{refreshToken});
+    return response.data;
+}
+
 const authService = {
-    register, login,refreshToken,forgotPassword
+    register, login,refreshToken,forgotPassword,getProfile,logout
 }
 
 export default authService;
