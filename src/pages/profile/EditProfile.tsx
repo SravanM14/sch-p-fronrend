@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./editProfile.css";
 import authService from "../../services/auth/authService";
 import { useAppDispatch, useAppSelector } from "../../store/hook";

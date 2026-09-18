@@ -43,12 +43,12 @@ api.interceptors.request.use(
  * has the response interceptor.
  */
 
-const refreshApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+// const refreshApi = axios.create({
+//   baseURL: import.meta.env.VITE_API_BASE_URL,
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// });
 
 
 /*
