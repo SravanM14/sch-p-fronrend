@@ -5,6 +5,8 @@ import Register from "../pages/auth/Register/Register";
 import ForgotPassword from "../pages/auth/ForgotPassword/ForgotPassword";
 import AppLayout from "../layouts/AppLayout/AppLayout";
 import Profile from "../pages/profile/Profile";
+import ProtectedRoute from "./ProtectedRoute";
+import EditProfile from "../pages/profile/EditProfile";
 
 const AppRoutes = () => {
   return (
@@ -24,10 +26,12 @@ const AppRoutes = () => {
       <Route path="*" element={<Navigate to="/login" replace />} />
 
  {/* Application */}
+      <Route element={<ProtectedRoute />}>
       <Route element={<AppLayout />}>
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<EditProfile />} />
       </Route>
-
+      </Route>
     </Routes>
   );
 };

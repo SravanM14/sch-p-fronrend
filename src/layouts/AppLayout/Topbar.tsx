@@ -3,6 +3,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import {useAppSelector } from "../../store/hook";
 import authService from "../../services/auth/authService";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../store/auth/authSlice";
 
 interface TopbarProps {
     isSidebarVisible: boolean;
@@ -11,6 +13,7 @@ interface TopbarProps {
 
 const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const user = useAppSelector((state) => state.auth.user);
 
     const refreshToken = useAppSelector((state) => state.auth.refreshToken);
@@ -19,6 +22,7 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
         try {
            // const refreshToken = localStorage.getItem("refreshToken");
             await authService.logout(refreshToken || "" );
+             dispatch(logOut());
             navigate("/login");
         } catch (error) {
             console.error("Logout error:", error);
@@ -60,22 +64,6 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
 
                     {/* User */}
                     <div className="d-flex align-items-center gap-2">
-
-                        <div
-                            className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
-                            style={{ width: "40px", height: "40px" }}
-                        >
-                            <i className="bi bi-person-fill"></i>
-                        </div>
-
-                        {/* <div className="d-none d-md-block">
-              <div className="fw-semibold">
-               {user?.name}
-              </div>
-
-              <small className="text-muted">
-                {user?.role}
-              </small> */}
 
                         <div className="dropdown">
                             <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

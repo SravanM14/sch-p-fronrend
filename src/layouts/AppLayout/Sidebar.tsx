@@ -1,4 +1,23 @@
+import { useDispatch } from "react-redux";
+import authService from "../../services/auth/authService";
+import { logOut } from "../../store/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../store/hook";
+
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const refreshToken = useAppSelector((state) => state.auth.refreshToken);
+  const logOutHandler = async () => {
+    try {
+      await authService.logout(refreshToken || "");
+      dispatch(logOut());
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+  
   return (
     <aside
       className="d-flex flex-column bg-dark text-white p-3"
@@ -95,7 +114,7 @@ const Sidebar = () => {
 
       {/* Logout */}
       <div className="mt-auto pt-3 border-top border-secondary">
-        <button className="btn btn-link text-white text-decoration-none w-100 text-start">
+        <button className="btn btn-link text-white text-decoration-none w-100 text-start" onClick={logOutHandler}>
           <i className="bi bi-box-arrow-right me-2"></i>
           Logout
         </button>

@@ -1,3 +1,4 @@
+import type { Profile } from "../../store/profile/profileSlice";
 import api, { publicApi } from "../api/axios";
 
 export interface RegisterRequest {
@@ -48,13 +49,23 @@ const getProfile = async()=>{
     return response.data;
 }
 
+const getProfileById = async(id:string)=>{
+    const response = await api.get(`/auth/users/${id}`);
+    return response.data;
+}
+
+const updateProfile = async(data:Partial<Profile>)=>{
+    const response = await api.put(`/auth/profile-update`, data);
+    return response.data;
+}
+
 const logout = async(refreshToken:string)=>{
     const response = await api.post('/auth/logout',{refreshToken});
     return response.data;
 }
 
 const authService = {
-    register, login,refreshToken,forgotPassword,getProfile,logout
+    register, login,refreshToken,forgotPassword,getProfile,getProfileById,logout,updateProfile
 }
 
 export default authService;

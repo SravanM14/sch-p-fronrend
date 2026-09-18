@@ -8,6 +8,7 @@ import {
 import authService from "../../services/auth/authService";
 
 import "./profile.css";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const dispatch = useAppDispatch();
@@ -117,8 +118,10 @@ const Profile = () => {
         </div>
 
         <button className="btn btn-primary">
-          <i className="bi bi-pencil me-2"></i>
-          Edit Profile
+          <Link to="/profile/edit" className="text-white text-decoration-none">
+            <i className="bi bi-pencil me-2"></i>
+            Edit Profile
+          </Link>
         </button>
       </div>
 
@@ -265,8 +268,10 @@ const Profile = () => {
               </button>
 
               <button className="btn btn-light w-100 text-start profile-action">
-                <i className="bi bi-pencil me-3"></i>
-                Edit Profile
+                <Link to="/profile/edit" className="text-decoration-none text-dark">
+                  <i className="bi bi-pencil me-3"></i>
+                  Edit Profile
+                </Link>
               </button>
 
             </div>

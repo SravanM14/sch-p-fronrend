@@ -1,0 +1,44 @@
+.edit-profile-avatar {
+  width: 110px;
+  height: 110px;
+}
+
+.edit-profile-avatar > div {
+  width: 110px;
+  height: 110px;
+}
+
+.edit-profile-avatar i {
+  font-size: 42px !important;
+}
+
+.edit-profile-avatar img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+}
+
+.form-label {
+  font-size: 14px;
+}
+
+.form-control,
+.form-select {
+  min-height: 44px;
+  border-color: #dee2e6;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.1);
+}
+
+.form-control:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+}
+
+.card {
+  border-radius: 12px;
+}
