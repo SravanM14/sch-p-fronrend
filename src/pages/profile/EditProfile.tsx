@@ -12,6 +12,7 @@ const EditProfile = () => {
     (state) => state.profile.profile
   );
   const [success, setSuccess] = useState("");
+  const [isUpdating, setIsUpdating] = useState(false);
   const [profileFormData, setProfileFormData] = useState({
     name: "",
     email: "",
@@ -87,6 +88,7 @@ const validateForm = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
           setSuccess("");
+          setIsUpdating(true);
         if(!validateForm()) {
             return;
         }
@@ -109,6 +111,8 @@ const validateForm = () => {
          navigate("/profile");
         }   catch (error) {
             console.error("Error updating profile:", error);
+        }finally {
+            setIsUpdating(false);
         }
        
     }
@@ -420,13 +424,23 @@ const validateForm = () => {
                   </Link>
                 </button>
 
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                >
-                  <i className="bi bi-check-lg me-2"></i>
-                  Save Changes
-                </button>
+                                  <button
+                                      type="submit"
+                                      className="btn btn-primary"
+                                  >
+                                      {isUpdating ? (
+                                          <>
+                                              <span
+                                                  className="spinner-border spinner-border-sm me-2"
+                                                  role="status"
+                                                  aria-hidden="true"
+                                              ></span>
+                                              Updating...
+                                          </>
+                                      ) : (
+                                          "Save Changes"
+                                      )}
+                                  </button>
 
               </div>
 

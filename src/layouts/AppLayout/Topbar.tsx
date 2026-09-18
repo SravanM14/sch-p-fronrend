@@ -14,7 +14,7 @@ interface TopbarProps {
 const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useAppSelector((state) => state.auth.user);
+    const user = useAppSelector((state) => state.profile.profile);
 
     const refreshToken = useAppSelector((state) => state.auth.refreshToken);
 

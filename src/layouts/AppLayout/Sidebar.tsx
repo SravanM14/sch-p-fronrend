@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import authService from "../../services/auth/authService";
 import { logOut } from "../../store/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../store/hook";
 
 const Sidebar = () => {
@@ -101,8 +101,10 @@ const Sidebar = () => {
           href="#"
           className="nav-link active bg-primary text-white rounded"
         >
+          <Link to="/profile" className="text-white text-decoration-none">
           <i className="bi bi-person-circle me-2"></i>
           Profile
+          </Link>
         </a>
 
         <a href="#" className="nav-link text-white rounded">
