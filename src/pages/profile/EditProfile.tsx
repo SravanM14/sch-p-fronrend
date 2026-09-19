@@ -108,7 +108,9 @@ const validateForm = () => {
                setSuccess(
          "Profile updated successfully!"
       );
-         navigate("/profile");
+            setTimeout(() => {
+        navigate("/profile");
+      }, 1500);
         }   catch (error) {
             console.error("Error updating profile:", error);
         }finally {

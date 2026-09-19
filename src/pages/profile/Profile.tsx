@@ -263,8 +263,10 @@ const Profile = () => {
               </h6>
 
               <button className="btn btn-light w-100 text-start mb-2 profile-action">
+                <Link to="/profile/change-password" className="text-decoration-none text-dark">
                 <i className="bi bi-key me-3"></i>
                 Change Password
+                </Link>
               </button>
 
               <button className="btn btn-light w-100 text-start profile-action">
