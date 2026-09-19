@@ -74,20 +74,32 @@
    ROLE BASE COLORS
    ========================================================= */
 
-.profile-role-admin {
-  --profile-role-color: #dc3545;
+.profile-role-theme .profile-role-title {
+  color: var(--profile-role-color);
 }
 
-.profile-role-teacher {
-  --profile-role-color: #198754;
+.profile-role-theme .btn-primary {
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
-.profile-role-parent {
-  --profile-role-color: #6f42c1;
+.profile-role-theme .btn-outline-primary {
+  color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
-.profile-role-student {
-  --profile-role-color: #0d6efd;
+.profile-role-theme .btn-outline-primary:hover {
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
+  color: #ffffff;
+}
+
+.profile-role-theme .bg-primary {
+  background-color: var(--profile-role-color) !important;
+}
+
+.profile-role-theme .text-primary {
+  color: var(--profile-role-color) !important;
 }
 
 
@@ -96,19 +108,19 @@
    ========================================================= */
 
 .profile-role-admin .profile-header h4 {
-  color: #dc3545;
+  color: var(--profile-role-color);
 }
 
 .profile-role-teacher .profile-header h4 {
-  color: #198754;
+  color: var(--profile-role-color);
 }
 
 .profile-role-parent .profile-header h4 {
-  color: #6f42c1;
+  color: var(--profile-role-color);
 }
 
 .profile-role-student .profile-header h4 {
-  color: #0d6efd;
+  color: var(--profile-role-color);
 }
 
 
@@ -117,23 +129,23 @@
    ========================================================= */
 
 .profile-role-admin .btn-primary {
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
 .profile-role-teacher .btn-primary {
-  background-color: #198754;
-  border-color: #198754;
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
 .profile-role-parent .btn-primary {
-  background-color: #6f42c1;
-  border-color: #6f42c1;
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
 .profile-role-student .btn-primary {
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: var(--profile-role-color);
+  border-color: var(--profile-role-color);
 }
 
 

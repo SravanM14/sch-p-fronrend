@@ -101,7 +101,7 @@ const Profile = () => {
   const roleClass = `profile-role-${profile.role.toLowerCase()}`;
 
   return (
-    <div className={`container-fluid profile-page ${roleClass}`}>
+    <div className={`container-fluid profile-page profile-role-theme ${roleClass}`}>
 
       {/* Header */}
       <div className="profile-header d-flex justify-content-between align-items-center mb-4">

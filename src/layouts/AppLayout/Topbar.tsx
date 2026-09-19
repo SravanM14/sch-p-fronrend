@@ -71,9 +71,9 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
                             </button>
                             <ul className="dropdown-menu dropdown-menu-dark">
                                 <li><Link to="/profile" className="dropdown-item">
-                                    Profile
+                                   <i className="bi bi-person-circle me-2"></i> Profile
                                 </Link></li>
-                                <li onClick={logOutHandler}>Logout</li>    
+                                <li onClick={logOutHandler}><a className="dropdown-item logout-option"><i className="bi bi-box-arrow-right me-2"></i> Logout</a></li>    
                             </ul>
                         </div>
                     </div>

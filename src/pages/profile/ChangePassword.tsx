@@ -1,8 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./changePassword.css";
+import "./profile.css";
 import { useState } from "react";
 import authService from "../../services/auth/authService";
 import { useAppDispatch } from "../../store/hook";
+import { useAppSelector } from "../../store/hook";
 import { logOut } from "../../store/auth/authSlice";
 
 
@@ -10,6 +12,8 @@ import { logOut } from "../../store/auth/authSlice";
 const ChangePassword = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const authUser = useAppSelector((state) => state.auth.user);
+    const roleClass = `profile-role-${(authUser?.role ?? "student").toLowerCase()}`;
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] =
         useState(false);
@@ -127,7 +131,7 @@ const ChangePassword = () => {
 
 
 
-        <div className="change-password-page">
+        <div className={`change-password-page profile-role-theme ${roleClass}`}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-12 col-lg-8 col-xl-7">
@@ -141,7 +145,7 @@ const ChangePassword = () => {
                                 </div>
                             )}
                             <div className="card-body p-4">
-                                <h5 className="mb-4">Update Password</h5>
+                                <h5 className="mb-4 profile-role-title">Update Password</h5>
 
                                 <form onSubmit={handleSubmit}>
                                     {/* Current Password */}

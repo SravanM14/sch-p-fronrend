@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./editProfile.css";
+import "./profile.css";
 import authService from "../../services/auth/authService";
 import { useAppDispatch, useAppSelector } from "../../store/hook";
 import { setProfile } from "../../store/profile/profileSlice";
@@ -11,6 +12,8 @@ const EditProfile = () => {
   const profile = useAppSelector(
     (state) => state.profile.profile
   );
+  const authUser = useAppSelector((state) => state.auth.user);
+  const roleClass = `profile-role-${(profile?.role ?? authUser?.role ?? "student").toLowerCase()}`;
   const [success, setSuccess] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [profileFormData, setProfileFormData] = useState({
@@ -81,7 +84,25 @@ const validateForm = () => {
         });
 
     }
+   
+
+
     }, [profile]);
+
+   useEffect(() => {
+  const fetchProfile = async () => {
+    if (!authUser?._id) return;
+
+    try {
+      const response = await authService.getProfileById(authUser._id);
+      dispatch(setProfile(response.data));
+    } catch (error) {
+      console.error("Failed to fetch profile", error);
+    }
+  };
+
+  fetchProfile();
+}, [authUser?._id, dispatch]);
  
 
 
@@ -120,12 +141,12 @@ const validateForm = () => {
     }
 
   return (
-    <div className="container-fluid">
+    <div className={`container-fluid profile-role-theme ${roleClass}`}>
 
       {/* Page Header */}
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
-          <h4 className="fw-bold mb-1">
+          <h4 className="fw-bold mb-1 profile-role-title">
             Edit Profile of <span className="text-primary">{profile?.name}</span>
           </h4>
 
