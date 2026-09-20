@@ -1,5 +1,5 @@
 import type { Profile } from "../../store/profile/profileSlice";
-import api, { publicApi } from "../api/axios";
+import api, { publicApi, refreshApi } from "../api/axios";
 
 export interface RegisterRequest {
     name: string;
@@ -39,7 +39,7 @@ const forgotPassword = async (email: string) => {
 }
 
 const refreshToken = async (refreshToken: string) => {
-    const response = await api.post('/auth/refresh-token', { refreshToken });
+    const response = await refreshApi.post('/auth/refresh-token', { refreshToken });
     return response;
 }
 
@@ -54,7 +54,7 @@ const getProfileById = async (id: string) => {
     return response.data;
 }
 
-const updateProfile = async (data: Partial<Profile>) => {
+const updateProfile = async (data: FormData) => {
     const response = await api.put(`/auth/profile-update`, data);
     return response.data;
 }

@@ -42,3 +42,9 @@
 .card {
   border-radius: 12px;
 }
+
+.edit-profile-avatar img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+}

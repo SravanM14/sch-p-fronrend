@@ -5,9 +5,9 @@ import { setCredintials } from "../../store/auth/authSlice";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 
@@ -43,12 +43,12 @@ api.interceptors.request.use(
  * has the response interceptor.
  */
 
-// const refreshApi = axios.create({
-//   baseURL: import.meta.env.VITE_API_BASE_URL,
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// });
+export const refreshApi = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 
 /*
