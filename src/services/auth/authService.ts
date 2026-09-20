@@ -1,4 +1,3 @@
-import type { Profile } from "../../store/profile/profileSlice";
 import api, { publicApi, refreshApi } from "../api/axios";
 
 export interface RegisterRequest {
