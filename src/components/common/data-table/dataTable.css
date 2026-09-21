@@ -1,0 +1,105 @@
+.user-table-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.user-table {
+  min-width: 850px;
+}
+
+.user-table thead th {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.user-table tbody td {
+  padding: 16px;
+  color: #343a40;
+  font-size: 14px;
+}
+
+.user-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  flex-shrink: 0;
+}
+
+.user-avatar i {
+  font-size: 20px;
+}
+
+.role-badge {
+  font-weight: 500;
+  padding: 6px 10px;
+}
+
+.role-admin {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+}
+
+.role-teacher {
+  background-color: #e8f5e9;
+  color: #198754;
+}
+
+.role-parent {
+  background-color: #fff3cd;
+  color: #997404;
+}
+
+.status-badge {
+  font-weight: 500;
+  padding: 6px 10px;
+}
+
+.status-active {
+  background-color: #d1e7dd;
+  color: #146c43;
+}
+
+.status-inactive {
+  background-color: #f8d7da;
+  color: #b02a37;
+}
+
+.user-table .btn {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination .page-link {
+  min-width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .user-table-card {
+    border-radius: 8px;
+  }
+
+  .user-table {
+    min-width: 850px;
+  }
+}

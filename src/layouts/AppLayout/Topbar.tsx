@@ -44,10 +44,6 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
                     >
                         <i className="bi bi-list fs-5"></i>
                     </button>
-
-                    <h5 className="mb-0 fw-semibold">
-                        {user?.name}
-                    </h5>
                 </div>
 
                 {/* Right */}

@@ -5,17 +5,17 @@ import { setCredintials } from "../../store/auth/authSlice";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
 });
 
+export const refreshApi = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 /*
  * REQUEST INTERCEPTOR
- *
- * Automatically adds the access token
- * to protected API requests.
  */
 
 api.interceptors.request.use(
@@ -28,63 +28,64 @@ api.interceptors.request.use(
 
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
+let isRefreshing = false;
+
+let refreshPromise: Promise<string> | null = null;
 
 /*
- * Separate Axios instance for refreshing
- * the access token.
- *
- * IMPORTANT:
- * We don't use "api" here because "api"
- * has the response interceptor.
+ * REFRESH ACCESS TOKEN
  */
 
-export const refreshApi = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+const refreshAccessToken = async (): Promise<string> => {
+  const refreshToken = store.getState().auth.refreshToken;
 
+  if (!refreshToken) {
+    throw new Error("Refresh token not available");
+  }
+
+  const response = await authService.refreshToken(refreshToken);
+
+  const newAccessToken = response.data.data.accessToken;
+  const newRefreshToken =
+    response.data.data.refreshToken || refreshToken;
+
+  const currentAuth = store.getState().auth;
+
+  if (!currentAuth.user) {
+    throw new Error("Authenticated user not available");
+  }
+
+  store.dispatch(
+    setCredintials({
+      user: currentAuth.user,
+      accessToken: newAccessToken,
+      refreshToken: newRefreshToken,
+    })
+  );
+
+  return newAccessToken;
+};
 
 /*
  * RESPONSE INTERCEPTOR
- *
- * If an API returns 401:
- *
- * 1. Get refresh token from Redux
- * 2. Call refresh-token API
- * 3. Get new access token
- * 4. Update Redux
- * 5. Retry original request
  */
 
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
+  (response) => response,
 
   async (error) => {
-
     const originalRequest = error.config;
 
-    /*
-     * If the error is not 401,
-     * return the original error.
-     */
-
-    if (error.response?.status !== 401) {
+    if (!error.response || error.response.status !== 401) {
       return Promise.reject(error);
     }
 
-
-    /*
-     * Prevent infinite retry loop.
-     */
+    if (!originalRequest) {
+      return Promise.reject(error);
+    }
 
     if (originalRequest._retry) {
       return Promise.reject(error);
@@ -92,121 +93,32 @@ api.interceptors.response.use(
 
     originalRequest._retry = true;
 
-
-    /*
-     * Get refresh token from Redux.
-     */
-
-    const refreshToken =
-      store.getState().auth.refreshToken;
-
-
-    /*
-     * No refresh token means
-     * we cannot refresh the session.
-     */
-
-    if (!refreshToken) {
-      return Promise.reject(error);
-    }
-
-
     try {
+      if (!isRefreshing) {
+        isRefreshing = true;
 
-      /*
-       * Call refresh-token API.
-       */
-
-      const response =
-        await authService.refreshToken(refreshToken);
-
-
-      /*
-       * Get the new access token.
-       *
-       * IMPORTANT:
-       * Confirm this property with your
-       * backend refresh-token response.
-       */
-
-      const newAccessToken =
-        response.data.data.accessToken;
-
-
-      /*
-       * Get current authentication state.
-       */
-
-      const currentAuth =
-        store.getState().auth;
-
-
-      /*
-       * Make sure the current user
-       * and refresh token still exist.
-       */
-
-      if (
-        !currentAuth.user ||
-        !currentAuth.refreshToken
-      ) {
-        return Promise.reject(error);
+        refreshPromise = refreshAccessToken()
+          .finally(() => {
+            isRefreshing = false;
+            refreshPromise = null;
+          });
       }
 
+      const newAccessToken = await refreshPromise!;
 
-      /*
-       * Update Redux with the new
-       * access token.
-       */
-
-      store.dispatch(
-        setCredintials({
-          user: currentAuth.user,
-          accessToken: newAccessToken,
-          refreshToken: currentAuth.refreshToken,
-        })
-      );
-
-
-      /*
-       * Update Authorization header
-       * for the original request.
-       */
-
+      originalRequest.headers = originalRequest.headers || {};
       originalRequest.headers.Authorization =
         `Bearer ${newAccessToken}`;
 
-
-      /*
-       * Retry the original request.
-       */
-
       return api(originalRequest);
-
     } catch (refreshError) {
-
-      /*
-       * Refresh token is invalid or expired.
-       *
-       * Logout can be handled here later.
-       */
-
       return Promise.reject(refreshError);
     }
   }
 );
 
-
 /*
  * PUBLIC API
- *
- * Used for:
- *
- * - Login
- * - Register
- * - Forgot Password
- * - Reset Password
- * - Refresh Token
  */
 
 export const publicApi = axios.create({
@@ -215,6 +127,5 @@ export const publicApi = axios.create({
     "Content-Type": "application/json",
   },
 });
-
 
 export default api;
