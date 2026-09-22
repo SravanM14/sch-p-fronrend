@@ -5,7 +5,7 @@ import {
   persistReducer,
 } from "redux-persist";
 import profileReducer from "./profile/profileSlice";
-
+import UserListSlice from"./usersList/usersSlice";
 
 
 // const authPersistConfig ={
@@ -53,7 +53,8 @@ const persistedAuthReducer = persistReducer(
 export const store = configureStore({
     reducer :{
         auth:persistedAuthReducer,
-        profile:profileReducer
+        profile:profileReducer,
+        usersList:UserListSlice,
     },
      middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

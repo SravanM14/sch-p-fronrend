@@ -3,6 +3,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 export interface Profile {
   id: string;
   name: string;
+  userId:string;
   email: string;
   dateOfBirth: string;
   role: "ADMIN" | "TEACHER" | "PARENT";

@@ -155,11 +155,11 @@ const Profile = () => {
               </h5>
 
               <p className="text-muted mb-2">
-                {getRoleName()}
+               <strong>{profile.userId}</strong> 
               </p>
 
               <span className="badge profile-role-badge">
-                {profile.role}
+               {getRoleName()}
               </span>
 
             </div>
@@ -242,7 +242,7 @@ const Profile = () => {
 
               <ProfileDetail
                 label="User ID"
-                value={profile.id}
+                value={profile?.userId}
               />
 
             </div>

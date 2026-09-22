@@ -14,7 +14,7 @@ interface TopbarProps {
 const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useAppSelector((state) => state.profile.profile);
+    const user = useAppSelector((state) => state.auth.user);
 
     const refreshToken = useAppSelector((state) => state.auth.refreshToken);
 
@@ -44,6 +44,7 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
                     >
                         <i className="bi bi-list fs-5"></i>
                     </button>
+                     <h4>{<b>{(user?.name)?.toUpperCase()}</b>}({user?.userId})</h4>
                 </div>
 
                 {/* Right */}

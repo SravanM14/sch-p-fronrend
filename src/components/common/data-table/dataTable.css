@@ -8,13 +8,14 @@
 }
 
 .user-table thead th {
-  background-color: #f8f9fa;
-  color: #6c757d;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding: 14px 16px;
-  border-bottom: 1px solid #dee2e6;
+    background-color: #3F51B5;
+      background-color: #3F51B5;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .user-table tbody td {
@@ -49,18 +50,18 @@
 }
 
 .role-admin {
-  background-color: #e7f1ff;
-  color: #0d6efd;
+  background-color: #00bcd4;
+  color: #fff;
 }
 
 .role-teacher {
-  background-color: #e8f5e9;
-  color: #198754;
+  background-color: #198754;
+  color: #fff;
 }
 
 .role-parent {
-  background-color: #fff3cd;
-  color: #997404;
+  background-color: #6f42c1;
+  color: #fff;
 }
 
 .status-badge {
