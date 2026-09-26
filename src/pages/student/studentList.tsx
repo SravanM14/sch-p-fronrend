@@ -65,7 +65,7 @@ const studentList = () => {
   const dispatch = useAppDispatch();
   const students = useAppSelector(state => state.studentList.data);
   const isLoading = useAppSelector(state => state.studentList.isLoading);
-  const error = useAppSelector(state => state.studentList.error);
+  //const error = useAppSelector(state => state.studentList.error);
   const totalStudents = useAppSelector(state => state.studentList.totalStudents);
   const currentPage = useAppSelector(state => state.studentList.currentPage);
   const limit = useAppSelector(state => state.studentList.limit);
