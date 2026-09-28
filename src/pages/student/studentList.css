@@ -1,0 +1,8 @@
+.right-align{
+text-align: right;
+
+}
+
+.right-align .btn {
+    background-color: #3F51B5 ;
+}

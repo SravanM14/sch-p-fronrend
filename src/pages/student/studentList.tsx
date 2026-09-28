@@ -5,6 +5,10 @@ import studentService from "../../services/students/Students.service";
 import { setLoading } from "../../store/student/studentSlice";
 import DataTable from "../../components/common/data-table/data-table";
 import { setPagination } from "../../store/usersList/usersSlice";
+import { getOrdinalSuffix } from "../../utils/ordinal";
+
+import './studentList.css'
+import { Link } from "react-router-dom";
 
 interface Column {
   key: keyof Student;
@@ -35,12 +39,12 @@ const columns: Column[] = [
     label: "Admission Number",
     type: "text",
   },
-   {
+  {
     key: "class",
     label: "Class",
     type: "text",
   },
-    {
+  {
     key: "section",
     label: "Section",
     type: "text",
@@ -112,13 +116,21 @@ const studentList = () => {
     <div className="container-fluid">
 
       <div className="mb-4">
-        <h3 className="mb-1">
-          Students
-        </h3>
+        <div className="row ">
+          <div className="col-md-10">
+            <h3 className="mb-1">
+              Students
+            </h3>
 
-        <p className="text-muted mb-0">
-          Manage school Students.
-        </p>
+            <p className="text-muted mb-0">
+              Manage school Students.
+            </p>
+          </div>
+          <div className="col-md-2  right-align">
+            <Link to="/students/create">
+            <button type="button" className="btn btn-primary align-right">Create New Student</button></Link>
+          </div>
+        </div>
       </div>
       <div className="row g-3 mb-4">
 
@@ -141,14 +153,10 @@ const studentList = () => {
             <option value="">All Classes</option>
             {Array.from({ length: 10 }, (_, index) => {
               const classNumber = index + 1;
-              const suffix =
-                classNumber % 100 >= 11 && classNumber % 100 <= 13
-                  ? "th"
-                  : ["th", "st", "nd", "rd"][classNumber % 10] ?? "th";
 
               return (
                 <option key={classNumber} value={classNumber}>
-                  {classNumber}{suffix} Class
+                  {classNumber}{getOrdinalSuffix(classNumber)} Class
                 </option>
               );
             })}

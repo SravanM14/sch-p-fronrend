@@ -70,7 +70,7 @@ const Topbar = ({ isSidebarVisible, onToggleSidebar }: TopbarProps) => {
                                 <li><Link to="/profile" className="dropdown-item">
                                    <i className="bi bi-person-circle me-2"></i> Profile
                                 </Link></li>
-                                <li onClick={logOutHandler}><a className="dropdown-item logout-option"><i className="bi bi-box-arrow-right me-2"></i> Logout</a></li>    
+                                <li onClick={logOutHandler} style={{ cursor: "pointer" }}><a className="dropdown-item logout-option"><i className="bi bi-box-arrow-right me-2"></i> Logout</a></li>    
                             </ul>
                         </div>
                     </div>

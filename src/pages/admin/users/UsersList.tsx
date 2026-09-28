@@ -93,16 +93,22 @@ useEffect(()=>{
 
 return (
     <div className="container-fluid">
+       <div className="row mb-4">
+          <div className="col-md-10">
+            <h3 className="mb-1">
+               Users
+            </h3>
 
-      <div className="mb-4">
-        <h3 className="mb-1">
-          Users
-        </h3>
-
-        <p className="text-muted mb-0">
-          Manage school users.
-        </p>
-      </div>
+            <p className="text-muted mb-0">
+              Manage school users.
+            </p>
+          </div>
+          <div className="col-md-2  right-align">
+           {/* <Link to="/students/create"> */}
+            <button type="button" className="btn btn-primary align-right">Create New User</button>
+            {/* </Link> */}
+          </div>
+        </div>
 
          <div className="row g-3 mb-4">
 

@@ -10,6 +10,7 @@ import EditProfile from "../pages/profile/EditProfile";
 import ChangePassword from "../pages/profile/ChangePassword";
 import UsersList from "../pages/admin/users/UsersList";
 import StudentList from "../pages/student/studentList";
+import CreateStudent from "../pages/student/CreateStudent";
 
 const AppRoutes = () => {
   return (
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         <Route path="/profile/change-password" element={<ChangePassword />} />
         <Route path ="/users" element={<UsersList/>}/>
         <Route path ="/students" element={<StudentList/>}/>
+        <Route path ="/students/create" element={<CreateStudent/>}/>
       </Route>
       </Route>
     </Routes>

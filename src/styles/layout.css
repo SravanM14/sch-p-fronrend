@@ -31,3 +31,5 @@
 .app-sidebar .nav-link:hover {
   background-color: color-mix(in srgb, var(--profile-role-color, #0d6efd) 75%, white) !important;
 }
+
+

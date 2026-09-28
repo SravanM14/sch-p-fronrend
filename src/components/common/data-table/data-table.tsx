@@ -1,3 +1,4 @@
+import { getOrdinalSuffix } from "../../../utils/ordinal";
 import "./dataTable.css";
 
 interface PaginationProps {
@@ -102,6 +103,8 @@ const DataTable = <T,>(_props: DataTableprops<T>) => {
                           </span>
                         ) : c.type === "date" ? (
                           formatDate(row[c.key])
+                        ) : c.key === "class" ? (
+                          `${Number(row[c.key])}${getOrdinalSuffix(Number(row[c.key]))} Class`
                         ) : (
                           String(row[c.key])
                         )}
