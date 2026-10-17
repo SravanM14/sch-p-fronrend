@@ -7,7 +7,12 @@ import api from "../api/axios"
       return response.data;
     }
 
-    const studentService ={getStudentList}
+    const createStudent = async (data: FormData) => {
+      const response = await api.post('/students/create', data);
+      return response.data;
+    }
+
+    const studentService ={getStudentList, createStudent}
 
 export default studentService;
 

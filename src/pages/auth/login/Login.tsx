@@ -447,7 +447,7 @@ const Login = () => {
           {/* Register Link */}
           {/* ---------------------------------------- */}
 
-          <p className="text-center text-secondary small mb-0">
+          {/* <p className="text-center text-secondary small mb-0">
 
             Don't have an account?{" "}
 
@@ -458,7 +458,7 @@ const Login = () => {
               Create Account
             </Link>
 
-          </p>
+          </p> */}
 
         </form>
       </div>

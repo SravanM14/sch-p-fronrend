@@ -15,6 +15,7 @@ const EditProfile = () => {
   const authUser = useAppSelector((state) => state.auth.user);
   const roleClass = `profile-role-${(profile?.role ?? authUser?.role ?? "student").toLowerCase()}`;
   const [success, setSuccess] = useState("");
+  const [error , setError] = useState("");
   const [isUpdating, setIsUpdating] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [selectedImagePreview, setSelectedImagePreview] = useState<string | null>(
@@ -113,6 +114,7 @@ const EditProfile = () => {
         const response = await authService.getProfileById(authUser._id);
         dispatch(setProfile(response.data));
       } catch (error) {
+        setError("Failed to fetch profile")
         console.error("Failed to fetch profile", error);
       }
     };
@@ -158,6 +160,7 @@ const EditProfile = () => {
         navigate("/profile");
       }, 1500);
     } catch (error) {
+      setError("Error in updating profile")
       console.error("Error updating profile:", error);
     } finally {
       setIsUpdating(false);
@@ -196,6 +199,15 @@ const EditProfile = () => {
             {success}
           </div>
         )}
+        {error &&(
+          <div
+            className="alert alert-error"
+            role="alert"
+          >
+            {error}
+          </div>
+          )
+        }
         <div className="card-body p-4">
           <form onSubmit={handleSubmit}>
             <div className="row">

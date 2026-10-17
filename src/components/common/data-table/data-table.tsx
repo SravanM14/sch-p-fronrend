@@ -13,6 +13,8 @@ interface DataTableprops<T> {
   data: T[] | null;
   isLoading?: boolean;
   pagination?: PaginationProps
+  onEdit?: (item: T) => void
+  onDelete?: (item: T) => void
 }
 
 const formatDate = (value: unknown) => {
@@ -91,10 +93,10 @@ const DataTable = <T,>(_props: DataTableprops<T>) => {
                 </tr>
               ) : (
               rows.map((row, index) => (
-                <tr key={String(index)}>
+                <tr key={String(index)}  className={(row as Record<string, unknown>)["isActive"] === false ? "table-active" : ""}>
                   {
                     _props.columns.map(c => (
-                      <td key={String(c.key)}>
+                      <td key={String(c.key)} >
                         {c.type === "badge" ? (
                           <span
                             className={`badge rounded-pill ${String(c.key) === "isActive" ? "status" : String(c.key)}-badge ${String(c.key) === "isActive" ? "status" : String(c.key)}-${String(c.key) === "isActive" ? (row[c.key] ? "active" : "inactive") : String(row[c.key]).toLowerCase()}`}
@@ -111,27 +113,32 @@ const DataTable = <T,>(_props: DataTableprops<T>) => {
                       </td>
                     ))
                   }
-                  <td>
-                    <div className="d-flex justify-content-end gap-2">
-
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-primary"
-                        title="Edit"
-                      >
-                        <i className="bi bi-pencil"></i>
-                      </button>
-
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-danger"
-                        title="Delete"
-                      >
-                        <i className="bi bi-trash"></i>
-                      </button>
-
-                    </div>
-                  </td>
+                  {(_props.onEdit || _props.onDelete) && (
+                    <td>
+                      <div className="d-flex justify-content-end gap-2">
+                        {_props.onEdit && (
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-primary"
+                            title="Edit"
+                            onClick={() => _props.onEdit?.(row)}
+                          >
+                            <i className="bi bi-pencil"></i>
+                          </button>
+                        )}
+                        {_props.onDelete && (
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-outline-danger"
+                            title="Delete"
+                            onClick={() => _props.onDelete?.(row)}
+                          >
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  )}
                 </tr>
               )))}
           </tbody>

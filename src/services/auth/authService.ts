@@ -1,3 +1,4 @@
+import type { User } from "../../store/usersList/usersSlice";
 import api, { publicApi, refreshApi } from "../api/axios";
 
 export interface RegisterRequest {
@@ -53,6 +54,11 @@ const getProfileById = async (id: string) => {
     return response.data;
 }
 
+const updateUser = async (data: Partial<User>) => { console.log("Updating user with data:", data);
+    const response = await api.put(`/auth/users/${data._id}`, data);
+    return response.data;
+}   
+
 const updateProfile = async (data: FormData) => {
     const response = await api.put(`/auth/profile-update`, data);
     return response.data;
@@ -69,7 +75,7 @@ const logout = async (refreshToken: string) => {
 }
 
 const authService = {
-    register, login, refreshToken, forgotPassword, getProfile, getProfileById, logout, updateProfile, changePassword
+    register, login, refreshToken, forgotPassword, getProfile, getProfileById, logout, updateProfile, changePassword, updateUser
 }
 
 export default authService;

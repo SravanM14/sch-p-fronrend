@@ -11,6 +11,7 @@ import ChangePassword from "../pages/profile/ChangePassword";
 import UsersList from "../pages/admin/users/UsersList";
 import StudentList from "../pages/student/studentList";
 import CreateStudent from "../pages/student/CreateStudent";
+import EditUser from "../pages/admin/users/EditUser";
 
 const AppRoutes = () => {
   return (
@@ -20,7 +21,7 @@ const AppRoutes = () => {
 
       {/* Authentication */}
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {/* <Route path="/register" element={<Register />} /> */}
       <Route
         path="/forgot-password"
         element={<ForgotPassword />}
@@ -36,6 +37,8 @@ const AppRoutes = () => {
         <Route path="/profile/edit" element={<EditProfile />} />
         <Route path="/profile/change-password" element={<ChangePassword />} />
         <Route path ="/users" element={<UsersList/>}/>
+        <Route path="/users/edit/:id" element={<EditUser />} />
+        <Route path="/users/register-user" element={<Register />} />
         <Route path ="/students" element={<StudentList/>}/>
         <Route path ="/students/create" element={<CreateStudent/>}/>
       </Route>

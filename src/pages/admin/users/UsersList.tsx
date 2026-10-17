@@ -3,6 +3,7 @@ import DataTable from "../../../components/common/data-table/data-table";
 import { useAppDispatch, useAppSelector } from "../../../store/hook";
 import { setPagination, setUserList, setUserListError, setUserListLoading, type User } from "../../../store/usersList/usersSlice";
 import UserService from "../../../services/users/userService";
+import { Link, useNavigate } from "react-router-dom";
 
 
 interface Column{
@@ -13,6 +14,7 @@ interface Column{
 
 const UsersList = ()=>{
  const dispatch =useAppDispatch();
+ const navigate = useNavigate();
  const userList = useAppSelector(state=> state.usersList.data)
  const isUserlistLoading = useAppSelector(state => state.usersList.isLoading);
  const totalUsers = useAppSelector(state=> state.usersList.totalUsers);
@@ -91,6 +93,8 @@ useEffect(()=>{
  },[dispatch,debounceSearch, role, isActive, currentPage, limit])
 
 
+ 
+
 return (
     <div className="container-fluid">
        <div className="row mb-4">
@@ -104,9 +108,9 @@ return (
             </p>
           </div>
           <div className="col-md-2  right-align">
-           {/* <Link to="/students/create"> */}
+           <Link to="/users/register-user"> 
             <button type="button" className="btn btn-primary align-right">Create New User</button>
-            {/* </Link> */}
+             </Link>
           </div>
         </div>
 
@@ -159,6 +163,9 @@ return (
           currentPage,
           onPageChange: (page) =>
             dispatch(setPagination({ totalUsers: totalUsers, currentPage: page, limit }))
+        }}
+        onEdit={(row) => {
+          navigate(`/users/edit/${row?._id}`);
         }}
       />
 

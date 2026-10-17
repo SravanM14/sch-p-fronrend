@@ -118,7 +118,7 @@ const Register = () => {
       // ------------------------------------
 
       setSuccess(
-        "Registration successful! Redirecting to login..."
+        "Registration successful! Redirecting to Userlist..."
       );
 
       // Clear form
@@ -133,11 +133,11 @@ const Register = () => {
 
       // Redirect to login
       setTimeout(() => {
-        navigate("/login");
+        navigate("/users");
       }, 1500);
     } catch (error) {
       console.error(
-        "REGISTER ERROR:",
+        "User REGISTER ERROR:",
         error
       );
 
@@ -562,29 +562,13 @@ const Register = () => {
                   aria-hidden="true"
                 ></span>
 
-                Registering...
+                Creating User...
               </>
             ) : (
-              "Register"
+              "Create User"
             )}
           </button>
 
-          {/* ============================== */}
-          {/* Login Link */}
-          {/* ============================== */}
-
-          <p className="text-center text-secondary small mb-0">
-
-            Already have an account?{" "}
-
-            <Link
-              to="/login"
-              className="auth-link"
-            >
-              Login
-            </Link>
-
-          </p>
 
         </form>
 

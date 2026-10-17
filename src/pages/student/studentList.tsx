@@ -69,7 +69,7 @@ const studentList = () => {
   const dispatch = useAppDispatch();
   const students = useAppSelector(state => state.studentList.data);
   const isLoading = useAppSelector(state => state.studentList.isLoading);
-  //const error = useAppSelector(state => state.studentList.error);
+  const error = useAppSelector(state => state.studentList.error);
   const totalStudents = useAppSelector(state => state.studentList.totalStudents);
   const currentPage = useAppSelector(state => state.studentList.currentPage);
   const limit = useAppSelector(state => state.studentList.limit);
@@ -132,6 +132,17 @@ const studentList = () => {
           </div>
         </div>
       </div>
+     
+       {error &&(
+          <div
+            className="alert alert-error"
+            role="alert"
+          >
+            {error}
+          </div>
+          )
+        }
+
       <div className="row g-3 mb-4">
 
         <div className="col-md-4">
