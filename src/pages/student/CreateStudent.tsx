@@ -212,7 +212,7 @@ const CreateStudent = () => {
             // API Call
             // ---------------------------------------
 
-            const response =await studentService.createStudent(data);
+           await studentService.createStudent(data);
                setSuccess("Student created successfully!");
                 setTimeout(() => {  
                 navigate("/students");
